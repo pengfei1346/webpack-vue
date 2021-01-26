@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const webpack = require('webpack');
-// const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 module.exports = {
@@ -123,11 +123,17 @@ module.exports = {
     }),
     new VueLoaderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    // new CopyWebpackPlugin([{
-    //   from: __dirname + '/public',
-    //   to: __dirname + '/dist/public',
-    //   ignore: ['.*']
-    // }]),
+    new CopyWebpackPlugin([{
+      from: __dirname + '/public',
+      to: __dirname + '/dist/public',
+      ignore: ['.*']
+    }]),
+    // new CopyWebpackPlugin({
+    //   patterns: [
+    //     { from: path.join(__dirname,'assets'),
+    //       to: 'assets' }
+    //   ],
+    // }),
     new CleanWebpackPlugin()
   ],
 }
